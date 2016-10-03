@@ -1,9 +1,11 @@
 <?php
 
-// use RecursiveDirectoryIterator;
-// use FilesystemIterator;
-// use RecursiveIteratorIterator;
-// use Exception;
+namespace PhalconDocs;
+
+use RecursiveDirectoryIterator;
+use FilesystemIterator;
+use RecursiveIteratorIterator;
+use Exception;
 
 /**
  * Class ApiGenerator
@@ -260,10 +262,14 @@ class ApiGenerator
                     $firstLine = false;
                 }
 
-                $pp = preg_replace("#^\t#", "", $pp);
+                $pp = preg_replace("#^\s#", "", $pp);
 
                 if (count($p) != 1) {
-                    $c .= "    " . $pp . PHP_EOL;
+                    if ($pp === "") {
+                        $c .= PHP_EOL;
+                    } else {
+                        $c .= "    " . $pp . PHP_EOL;
+                    }
                 } else {
                     $c .= $pp . PHP_EOL;
                 }
